@@ -5,6 +5,7 @@ from decimal import Decimal
 
 from matplotlib import pyplot as plt
 
+from dotenv import load_dotenv
 from tinkoff.invest import CandleInterval, Client
 from tinkoff.invest.strategies.base.account_manager import AccountManager
 from tinkoff.invest.strategies.moving_average.plotter import (
@@ -25,13 +26,15 @@ from tinkoff.invest.strategies.moving_average.supervisor import (
 )
 from tinkoff.invest.strategies.moving_average.trader import MovingAverageStrategyTrader
 
+load_dotenv()
+
 logging.basicConfig(format="%(asctime)s %(levelname)s:%(message)s", level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-TOKEN = os.environ["INVEST_TOKEN"]
-FIGI = os.environ["INVEST_FIGI"]
-ACCOUNT_ID = os.environ["INVEST_ACCOUNT_ID"]
+TOKEN = os.getenv('INVEST_TOKEN')  # TOKEN = os.environ["INVEST_TOKEN"]
+FIGI = os.getenv('INVEST_FIGI')  # FIGI = os.environ["INVEST_FIGI"]
+ACCOUNT_ID = os.getenv('INVEST_ACCOUNT_ID')  # ACCOUNT_ID = os.environ["INVEST_ACCOUNT_ID"]
 
 
 def main():
